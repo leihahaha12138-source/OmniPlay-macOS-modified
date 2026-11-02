@@ -10,6 +10,30 @@
 
 ---
 
+## 下载安装（不自己编译）
+
+到 [Releases](https://github.com/leihahaha12138-source/OmniPlay-macOS-modified/releases)
+下载最新的 `.dmg`，打开后把「觅影.app」拖进「应用程序」。
+
+**首次打开会被系统拦下**——本程序没有付费开发者账号，未签名、未公证。
+二选一：
+
+- **手动放行**：在「应用程序」里按住 **Control** 点「觅影」→ 选「打开」→ 再点一次「打开」。
+- **终端一行**：
+
+  ```bash
+  xattr -dr com.apple.quarantine /Applications/觅影.app
+  ```
+
+  这条命令只是去掉「从网上下载」的隔离标记，不会修改程序本身。
+
+DMG 里附了一份同内容的「首次打开说明.txt」。不想用这两招的话，
+直接按下面「从源码编译」自己构建一次也能跑，不需要任何特殊操作。
+
+> 系统要求：macOS 13 或更新，Apple Silicon（M 系列）。Intel Mac 无法运行。
+
+---
+
 ## 改了什么
 
 ### 1. 去掉 TMDB，换成豆瓣
@@ -54,7 +78,7 @@ MoltenVK 只在视频加载那一刻读一次图层尺寸，之后不再感知�
 
 ---
 
-## 编译
+## 从源码编译
 
 需要 Xcode（含 macOS SDK）。
 
@@ -83,6 +107,16 @@ xcodebuild -project OmniPlay.xcodeproj -scheme OmniPlay \
 | `-configuration Release` | 59 秒，产物 **64 MB** |
 
 > 想发给别人用请用 **Release**，不要发 Debug（体积大、性能低）。
+
+自己打包 DMG 发给别人：
+
+```bash
+./scripts/make-dmg.sh          # 产物在 dist/，约 25 MB
+```
+
+DMG 里已经带了「首次打开说明.txt」（含上面那条 `xattr` 命令）。
+脚本**只做编译和打包，不做签名与公证**——那需要 Apple Developer Program（$99/年）。
+发布二进制时请遵守 GPL：在 Release 说明里注明对应的源码 commit。
 
 ---
 
