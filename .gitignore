@@ -226,3 +226,9 @@ mapping/
 MPVKit-local
 *.profraw
 .omniplay-douban-sync/
+
+# Python（douban-sync/ 是 Python 脚本）
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/

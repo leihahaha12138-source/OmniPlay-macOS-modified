@@ -1,0 +1,15 @@
+NOTICE
+======
+
+本项目是 **nandieling/OmniPlay** 的修改版。
+
+- 上游：https://github.com/nandieling/OmniPlay
+- 基于版本：1.7（commit 2fec8c8）
+- 原始版权：归 nandieling 及 OmniPlay 的所有贡献者所有
+- 许可证：GNU Affero General Public License v3.0（见 LICENSE，未做任何改动）
+
+本仓库的修改内容（去掉 TMDB 改用豆瓣、App 内豆瓣登录、豆瓣自动刮削脚本、
+⌘Q 进度保存、全屏/小窗画面裁切等）见 README.md 第 1–4 节，
+同样以 AGPL-3.0 发布。
+
+上游作者已明确同意基于其代码进行二次开发与公开发布。
