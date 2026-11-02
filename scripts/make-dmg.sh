@@ -14,9 +14,11 @@ SRC_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 OUT_DIR="${1:-$SRC_DIR/dist}"
 BUILD_DIR="/tmp/omniplay-release-dd"
 APP_NAME="觅影"
+# 文件名用 ASCII：GitHub Release 上传时中文名会被吞掉（实测变成 "-1.7-mod1.dmg"）
+DMG_BASE="OmniPlay"
 # 版本号只用于文件名，不改工程设置（避免动 pbxproj）
 VERSION="1.7-mod1"
-DMG="$OUT_DIR/${APP_NAME}-${VERSION}.dmg"
+DMG="$OUT_DIR/${DMG_BASE}-${VERSION}.dmg"
 
 echo "=== 编译 Release ==="
 xcodebuild -project "$SRC_DIR/OmniPlay.xcodeproj" -scheme OmniPlay \
