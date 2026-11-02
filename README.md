@@ -69,9 +69,20 @@ xcodebuild -project OmniPlay.xcodeproj -scheme OmniPlay \
   -configuration Debug -sdk macosx build
 ```
 
-- 播放内核是 **MPVKit 0.41.0**（`Package.resolved` 里锁定），首次编译会从 GitHub 拉取。
+- 播放内核是 **MPVKit 0.41.0**（`Package.resolved` 里锁定），首次编译会从 GitHub 拉取
+  它的 xcframework —— **依赖目录解压后约 1.6 GB**，网速一般的话要等几分钟。之后增量编译 10–40 秒。
 - `GRDB.swift-master` 是仓库内的本地 Swift 包，不要删。
 - Bundle ID 沿用上游的 `nan.OmniPlay`，以便覆盖安装；想和原版并存请自行修改。
+
+实测（Apple Silicon / Xcode 26）：
+
+| 场景 | 结果 |
+|---|---|
+| 全新克隆 + 空依赖缓存 + 空 DerivedData | **2 分 47 秒**，`BUILD SUCCEEDED`，产物 84 MB（Debug） |
+| 同机增量编译 | 10–40 秒 |
+| `-configuration Release` | 59 秒，产物 **64 MB** |
+
+> 想发给别人用请用 **Release**，不要发 Debug（体积大、性能低）。
 
 ---
 
