@@ -10,7 +10,7 @@ OmniPlay(觅影) 豆瓣评分 + 海报 自动同步器
       2) 到期刷新：已有豆瓣记录且超过 nextRefreshAt 的影片，用其 subjectId
          重新抓取，更新评分/人数/简介（评分会随豆瓣变动而更新）
 
-请求节奏与觅影自身一致：每次间隔 ≥12s + 3~8s 随机抖动，规避豆瓣风控。
+请求节奏与觅影自身一致：每次间隔 ≥12s + 3~8s 随机抖动，避免给对方服务器造成压力。
 
 本脚本只在你自己的机器上操作你自己的数据库，等价于帮你在觅影里逐条绑定豆瓣。
 数据库写入前自动备份。失败/无法判定的影片不会写入，记入 review 清单待人工。
@@ -173,7 +173,7 @@ class DoubanClient:
         except urllib.error.HTTPError as e:
             self.fail_streak += 1
             if e.code in (403, 429):
-                # 403 = 条目级 need_permission（未登录/cookie 失效）或风控
+                # 403 = 条目级 need_permission（未登录/cookie 失效）或触发访问频率限制
                 body = ""
                 try:
                     body = e.read(200).decode("utf-8", "ignore")
@@ -195,7 +195,7 @@ class DoubanClient:
     # ---- 搜索 ----
     def search(self, title: str):
         """
-        豆瓣 subject_suggest 偶发返回空数组（瞬时风控），空结果等待后重试，
+        豆瓣 subject_suggest 偶发返回空数组（瞬时限流），空结果等待后重试，
         避免把真有的片误判为"无此片"。基础间隔已 12s，重试额外 +8s。
         """
         url = "https://movie.douban.com/j/subject_suggest?q=" + urllib.parse.quote(title)
