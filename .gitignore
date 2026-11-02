@@ -1,0 +1,228 @@
+# ============================================================
+# OmniPlay repository ignore rules
+# Applies to:
+# - OmniPlay-win
+# - OmniPlay开源-mac-ARM
+# - OmniPlay开源-mac-x64
+# ============================================================
+
+# macOS / Finder
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+
+# Editor / local IDE state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+
+# Local environment, signing material, and secrets
+.env
+.env.*
+*.env
+*.env.*
+*.p12
+*.pfx
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.pem
+*.key
+*.crt
+*.keystore
+*.jks
+*.idsig
+keystore.properties
+signing.properties
+local.properties
+LICENSE(*.local)
+
+# Logs and local data
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+TestResults/
+Logs/
+stdout
+**/stdout
+.bytro
+**/.bytro
+tmp_test.txt
+**/tmp_test.txt
+
+# Local screenshots and manual test captures
+屏幕截图*
+截图*
+截屏*
+Screenshot*
+Screen Shot*
+
+# Keep SQLite fixtures that are part of the vendored GRDB test suite.
+!OmniPlay开源-mac-ARM/GRDB.swift-master/Tests/**/*.sqlite
+!OmniPlay开源-mac-x64/GRDB.swift-master/Tests/**/*.sqlite
+
+# ============================================================
+# Build and package outputs
+# ============================================================
+dist/
+**/dist/
+build/
+Build/
+**/build/
+**/Build/
+tmp/
+**/tmp/
+publish/
+**/publish/
+
+# Release/install artifacts should be attached to GitHub Releases,
+# not committed to the source repository.
+*.zip
+*.dmg
+*.pkg
+*.msix
+*.msi
+*.exe
+*.app
+*.ipa
+*.apk
+*.apk.idsig
+*.aab
+*.ap_
+*.xcarchive/
+*.dSYM
+*.dSYM/
+*.dSYM.zip
+
+# ============================================================
+# Xcode / Swift / SwiftPM
+# ============================================================
+DerivedData/
+**/DerivedData/
+xcuserdata/
+**/xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.hmap
+.build/
+**/.build/
+.swiftpm/
+**/.swiftpm/
+.swiftpm/xcode/xcuserdata/
+**/.swiftpm/xcode/xcuserdata/
+
+# Keep project files and local vendored source packages tracked unless
+# the project is changed to remote SwiftPM dependencies.
+# Do not ignore:
+# - *.xcodeproj/project.pbxproj
+# - GRDB.swift-master/
+
+# CocoaPods / Carthage, if introduced later
+Pods/
+Carthage/Build/
+
+# fastlane generated files
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# ============================================================
+# .NET / Avalonia / Windows
+# ============================================================
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nupkg
+*.snupkg
+
+# Debug symbols and crash dumps
+*.pdb
+*.ilk
+*.exp
+*.iobj
+*.ipdb
+*.dmp
+
+# Local package manager caches
+packages/
+.nuget/
+.dotnet/
+.dotnet-sdk/
+**/.dotnet-sdk/
+
+# Node / web frontend dependencies and generated caches
+node_modules/
+**/node_modules/
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.vite/
+**/.vite/
+
+# Docker runtime data. The sample compose file creates these locally.
+OmniPlay-docker/data/
+OmniPlay-docker/cache/
+OmniPlay-docker/logs/
+OmniPlay-docker/media/
+OmniPlay-docker/.env
+OmniPlay-docker/.env.*
+
+# Windows native runtime binaries are large local dependencies.
+# Keep them outside git, or use Git LFS / GitHub Releases if they
+# must be distributed with source.
+OmniPlay-win/native/mpv/
+OmniPlay-win/src/OmniPlay.Desktop/Native/mpv/*.dll
+
+# NAS package runtime binaries should be generated or attached to releases,
+# not committed to the source repository.
+OmniPlay-群晖-飞牛/packaging/media-tools/
+
+# ============================================================
+# Third-party binary frameworks / generated vendor artifacts
+# ============================================================
+*.xcframework/
+*.framework/
+
+# ============================================================
+# Android / Gradle
+# ============================================================
+.gradle/
+**/.gradle/
+.cxx/
+**/.cxx/
+captures/
+**/captures/
+app/build/
+**/app/build/
+mapping/
+**/mapping/
+
+# 本地私有：外部豆瓣同步脚本用的目录（不入库）
+MPVKit-local
+*.profraw
+.omniplay-douban-sync/
